@@ -1,19 +1,21 @@
-import random
-
-secret_number = random.randint(1,3)
-attempts = 2
-
-def setup():
-    size(400, 400)
-    textSize(20)
-    textAlign(CENTER, CENTER)
-    fill(255)
+    size(400, 400)  # Устанавливаем размер окна
 
 def draw():
-    background(0)
-    text("Guess the number!", width/2, 50)
-    text("Attempts: " + str(attempts), width/2, 100)
+    background(255)  # Устанавливаем белый фон
 
-def keyPressed():
-    if key == ENTER:
-        check_guess(int(input("Enter your guess: ")))
+    # Рассчитываем радиус круга в зависимости от времени
+    radius = min(width, height) * 0.5 + 200 * sin(millis() * 0.001)
+
+    # Устанавливаем цвет круга в зависимости от положения мыши
+    fill(mouseX, mouseY, 150)
+    noStroke()
+
+    # Рисуем круг
+    ellipse(width / 2, height / 2, radius, radius)
+
+    # Проверяем, заполнился ли весь холст
+    if mousePressed:
+        fill (random(0,255),random (0,255), random(0,255))  # Устанавливаем цвет текста
+        textSize(32)  # Устанавливаем размер текста
+        textAlign(CENTER, CENTER)
+        text("s okonchaniem goda", width / 2, height / 2)
