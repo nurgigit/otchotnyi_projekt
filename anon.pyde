@@ -1,21 +1,33 @@
-    size(400, 400)  # Устанавливаем размер окна
+    player_x = 100
+object1 = 0
+score = 0
 
+def setup():
+    size(800,800)
 def draw():
-    background(255)  # Устанавливаем белый фон
+    global player_x, object1, score
+    
+    background(255)
+    
+    fill(255, 0, 0)
+    rect(player_x,700, 80, 80)
+    
+    ellipse(300, object1, 50, 50)
+    object1 += 5
 
-    # Рассчитываем радиус круга в зависимости от времени
-    radius = min(width, height) * 0.5 + 200 * sin(millis() * 0.001)
-
-    # Устанавливаем цвет круга в зависимости от положения мыши
-    fill(mouseX, mouseY, 150)
-    noStroke()
-
-    # Рисуем круг
-    ellipse(width / 2, height / 2, radius, radius)
-
-    # Проверяем, заполнился ли весь холст
-    if mousePressed:
-        fill (random(0,255),random (0,255), random(0,255))  # Устанавливаем цвет текста
-        textSize(32)  # Устанавливаем размер текста
-        textAlign(CENTER, CENTER)
-        text("s okonchaniem goda", width / 2, height / 2)
+    if object1 >= 675 and player_x >= 200 and player_x <= 325:
+        object1 = 300
+        score += 1
+        
+    elif object1 >= 775:
+        object1 = 0
+        score -= 1
+        
+    print(score)
+    print(player_x)
+    print(object1)
+    if keyPressed:
+        if key == "A" or key == "a" or key == 'ф' or  key == 'Ф':
+            player_x -= 3
+        elif key == "D" or key == "d" or key == 'в' or key == 'В':
+            player_x += 3
